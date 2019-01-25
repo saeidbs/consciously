@@ -35,9 +35,10 @@ public class Main {
 
         //Search search=new Search(new Node("123450786"),"123456780");
         //Search search=new Search(new Node("567408321"),"123804765");
-        //Search search=new Search(new Node("076431825"),"123456780");
+       // Search search=new Search(new Node("076431825"),"123456780");
     // Search search=new Search(new Node("123456708"),"123456780");
       Search search=new Search(new Node("012563478"),"123456780");
+       // Search search=new Search(new Node("123450786"),"123456780");
         search.aStar();
 
 //          ArrayList<Integer> mahdodiat=new ArrayList<>();

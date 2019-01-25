@@ -172,6 +172,9 @@ public class Search {
 
         while (!currentNode.getState().equals(goalState)) {
 
+//            if (currentNode.getParent()!=null)
+//            System.out.println(getUcsCost(currentNode));
+
             stateSets.add(currentNode.getState());
             List<String> nodeExpand = NodeHelp.getExpand(currentNode.getState());
             for (String string : nodeExpand) {
@@ -195,6 +198,7 @@ public class Search {
         NodeHelp.printSolution(currentNode, stateSets, root, polls);
         System.out.println( currentNode.getTotalCost());
         System.out.println(currentNode.getEstimatedCostToGoal());
+
     }
 
     public void rbfs(){
@@ -452,10 +456,18 @@ public class Search {
         Node parent= node.getParent();
 
         //int parentStayZero=parent.getState().indexOf("0");
-        int childStayZero=node.getState().indexOf("0");
-        int whichChanged= parent.getState().charAt(childStayZero);
+        int childStayZero=node.getState().indexOf('0');
+        char charAt= parent.getState().charAt(childStayZero);
+        int whichChanged= parent.getState().indexOf(charAt);
         int childStayChanged=node.getState().indexOf(whichChanged);
         int cost=whichChanged-(childStayChanged+1);
+//        System.out.println("***************");
+//        System.out.println(node.getState());
+//        System.out.println(childStayZero);
+//        System.out.println(parent.getState());
+//        System.out.println(whichChanged);
+//        System.out.println(childStayChanged);
+     //   System.out.println(cost);
         return Math.abs(cost);
 
 
