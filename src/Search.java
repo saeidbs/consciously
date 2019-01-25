@@ -145,6 +145,7 @@ public class Search {
                 // child.setTotalCost(currentNode.getTotalCost() + Character.getNumericValue(child.getState().charAt(child.getParent().getState().indexOf('0'))), 0);
                 child.setTotalCost(currentNode.getTotalCost()+getUcsCost(child));
 
+
                 nodePriorityQueue.add(child);
 
             }
@@ -186,9 +187,10 @@ public class Search {
                 currentNode.addChild(child);
                 child.setParent(currentNode);
 
-
-                child.setTotalCost(currentNode.getTotalCost() + getUcsCost(child), heuristicTwo(child.getState(), goalState));
-                //System.out.println( heuristicTwo(currentNode.getState(), goalState));
+                child.setTotalCost(currentNode.getTotalCost() + getUcsCost(child), heuristicOne(child.getState(), goalState));
+           //    System.out.println( heuristicOne(currentNode.getState(), goalState));
+//                child.setTotalCost(currentNode.getTotalCost() + getUcsCost(child), heuristicTwo(child.getState(), goalState));
+//                System.out.println( heuristicTwo(currentNode.getState(), goalState));
                 nodePriorityQueue.add(child);
 
             }
