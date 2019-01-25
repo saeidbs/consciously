@@ -193,6 +193,8 @@ public class Search {
             polls++;
         }
         NodeHelp.printSolution(currentNode, stateSets, root, polls);
+        System.out.println( currentNode.getTotalCost());
+        System.out.println(currentNode.getEstimatedCostToGoal());
     }
 
     public void rbfs(){
@@ -354,7 +356,8 @@ public class Search {
             //dfs end
 
         }
-
+       // NodeHelp.printSolution(dfsCurrentNode, dfsStateSets, root, polls);
+       // NodeHelp.printSolution(bfsCurrentNode, bfsStateSets, likeRoot, polls);
 
 
 

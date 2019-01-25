@@ -34,7 +34,8 @@ import java.util.ArrayList;
         }
 
         public int getTotalCost() {
-            return totalCost;
+            //return totalCost;
+            return totalCost-getEstimatedCostToGoal();
         }
 
         public void setTotalCost(int totalCost) {
