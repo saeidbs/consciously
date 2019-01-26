@@ -17,6 +17,7 @@ public class Main {
 //        wow.add(2);
 //        System.out.println(""+wow.pop()+wow.pop());
 //        ArrayList<Integer>s=new ArrayList<>();
+//        Fuze manand
 //        s.add(3);
 //        s.add(2);
 //        s.add(4);
@@ -33,13 +34,16 @@ public class Main {
        // System.out.println(s);
        // Search search=new Search(new Node("820347516"),"123456780",123450786);
 
+        //Ciram dahanet
         //Search search=new Search(new Node("123450786"),"123456780");
         //Search search=new Search(new Node("567408321"),"123804765");
        // Search search=new Search(new Node("076431825"),"123456780");
+        //Cir kale
     // Search search=new Search(new Node("123456708"),"123456780");
-      Search search=new Search(new Node("012563478"),"123456780");
+      //Search search=new Search(new Node("012563478"),"123456780");
        // Search search=new Search(new Node("123450786"),"123456780");
-        search.aStar();
+        Search search=new Search(new Node("345678012"),"123456780");
+        search.bfs();
 
 //          ArrayList<Integer> mahdodiat=new ArrayList<>();
 //            mahdodiat.add(2);

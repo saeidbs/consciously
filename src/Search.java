@@ -104,20 +104,21 @@ public class Search {
 
                 //  stack.add(child);
                 //test for real dfs
-                sampleStack.add(child);
+                //sampleStack.add(child);
+                stack.add(child);
             }
-            while (!sampleStack.isEmpty()){
-
-                stack.add(sampleStack.pop());
-
-            }
+//            while (!sampleStack.isEmpty()){
+//
+//                stack.add(sampleStack.pop());
+//
+//            }
             currentNode=stack.pop();
             poped++;
 
         }
 
          NodeHelp.printSolution(currentNode, dfsStateSets, root, poped);
-        System.out.println(currentNode.getState());
+       // System.out.println(currentNode.getState());
 
 
     }
@@ -375,6 +376,97 @@ public class Search {
     }
 
 
+
+    public void bdss(){
+
+
+        // head of properties for bfs
+        bfsStateSets = new HashSet<String>();
+        // Node node = new Node(root.getState());
+        likeRoot=new Node(goalState);
+        likeGoalState=root.getState();
+        Node bfsNode = new Node(likeRoot.getState());
+        Queue<Node> queue = new LinkedList<Node>();
+
+        Node bfsCurrentNode=bfsNode;
+        String bfsGoalState=likeGoalState;
+        int polls=0;
+        //end properites for bfs
+
+        //head of properties for dfs
+        dfsStateSets = new HashSet<String>();
+
+
+        Node dfsNode = new Node(root.getState());
+        Queue<Node> dfsQueue = new LinkedList<>();
+        Node dfsCurrentNode=dfsNode;
+        int poped=0;
+
+        //end properties for dfs
+
+        boolean whileBollean=true;
+        // while (!bfsCurrentNode.getState().equals(goalState)){
+        while (whileBollean){
+            //  System.out.println("bfswow");
+            bfsStateSets.add(bfsCurrentNode.getState());
+            dfsStateSets.add(dfsCurrentNode.getState());
+            //check for end the while
+            whileBollean=whileBds();
+
+            List<String>bfsNodeExpand=NodeHelp.getExpand(bfsCurrentNode.getState());
+            List<String>dfsNodeExpand=NodeHelp.getExpand(dfsCurrentNode.getState());
+
+            //bfs node expand and child
+            for(String string:bfsNodeExpand){
+
+                if(bfsStateSets.contains(string))
+                    continue;
+
+                bfsStateSets.add(string);
+
+                whileBollean=whileBds();
+
+                Node child=new Node(string);
+                bfsCurrentNode.addChild(child);
+                child.setParent(bfsCurrentNode);
+                queue.add(child);
+            }
+            bfsCurrentNode=queue.poll();
+            polls++;
+            //end bfs expand
+            //dfs expand
+            for(String string:dfsNodeExpand){
+
+                if(dfsStateSets.contains(string))
+                    continue;
+
+                dfsStateSets.add(string);
+                whileBollean=whileBds();
+                Node child=new Node(string);
+                dfsCurrentNode.addChild(child);
+                child.setParent(dfsCurrentNode);
+
+                //  stack.add(child);
+                //test for real dfs
+                dfsQueue.add(child);
+            }
+
+            dfsCurrentNode=dfsQueue.poll();
+            poped++;
+            //dfs end
+
+        }
+         NodeHelp.printSolution(dfsCurrentNode, dfsStateSets, root, polls);
+         NodeHelp.printSolution(bfsCurrentNode, bfsStateSets, likeRoot, polls);
+
+
+
+        //NodeHelp.printSolution(bfsCurrentNode, bfsStateSets, root, polls);
+
+        // System.out.println(bfsCurrentNode.getState());
+
+
+    }
     public void testBds(){
 
         Thread dfsThread= new Thread(new Runnable() {
@@ -459,8 +551,9 @@ public class Search {
 
         //int parentStayZero=parent.getState().indexOf("0");
         int childStayZero=node.getState().indexOf('0');
-        char charAt= parent.getState().charAt(childStayZero);
-        int whichChanged= parent.getState().indexOf(charAt);
+       char charAt= parent.getState().charAt(childStayZero);
+       int whichChanged= parent.getState().indexOf(charAt);
+       // int whichChanged=parent.getState().charAt(childStayZero);
         int childStayChanged=node.getState().indexOf(whichChanged);
         int cost=whichChanged-(childStayChanged+1);
 //        System.out.println("***************");
